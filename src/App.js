@@ -10,31 +10,39 @@ function App() {
     {
       id: 0,
       title: '공부하기',
-      isActive: true,
+      isDone: false,
     },
     {
       id: 1,
       title: '밥먹기',
-      isActive: false,
+      isDone: true,
     },
     {
       id: 2,
       title: '강의 보기',
-      isActive: true,
+      isDone: false,
     },
   ]);
 
   const onItemAdd = (title) => {
-    setItems((items) => [
-      ...items,
-      { id: id.current++, title, isActive: true },
-    ]);
+    setItems((items) => [...items, { id: id.current++, title, isDone: false }]);
+  };
+
+  const onChangeCheckbox = (id) => {
+    setItems((items) =>
+      items.map((item) => {
+        if (item.id === id) {
+          return { ...item, isDone: !item.isDone };
+        }
+        return item;
+      })
+    );
   };
 
   return (
     <div className='App'>
       <Header />
-      <ItemList items={items} />
+      <ItemList items={items} onChangeCheckbox={onChangeCheckbox} />
       <Footer onItemAdd={onItemAdd} />
     </div>
   );
