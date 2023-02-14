@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import ItemList from './components/ItemList';
 
 function App() {
+  const [items, setItems] = useState([
+    {
+      id: 0,
+      title: '공부하기',
+      isActive: true,
+    },
+    {
+      id: 1,
+      title: '밥먹기',
+      isActive: false,
+    },
+    {
+      id: 2,
+      title: '강의 보기',
+      isActive: true,
+    },
+  ]);
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <ItemList items={items} />
+      <Footer />
     </div>
   );
 }
