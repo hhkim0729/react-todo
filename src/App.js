@@ -3,6 +3,7 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ItemList from './components/ItemList';
+import { Filter } from './types';
 
 function App() {
   const id = useRef(3);
@@ -23,6 +24,7 @@ function App() {
       isDone: false,
     },
   ]);
+  const [filter, setFilter] = useState(Filter.all);
 
   const onItemAdd = (title) => {
     setItems((items) => [...items, { id: id.current++, title, isDone: false }]);
@@ -43,11 +45,16 @@ function App() {
     setItems((items) => items.filter((item) => item.id !== id));
   };
 
+  const onClickFilter = (filter) => {
+    setFilter(filter);
+  };
+
   return (
     <div className='App'>
-      <Header />
+      <Header onClickFilter={onClickFilter} />
       <ItemList
         items={items}
+        filter={filter}
         onChangeCheckbox={onChangeCheckbox}
         onItemDelete={onItemDelete}
       />
