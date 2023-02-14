@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
-export default function Item({ item, onChangeCheckbox }) {
+export default function Item({ item, onChangeCheckbox, onItemDelete }) {
   return (
     <li>
       <input
@@ -10,7 +10,7 @@ export default function Item({ item, onChangeCheckbox }) {
         checked={item.isDone}
       />
       {item.title}
-      <button>
+      <button onClick={() => onItemDelete(item.id)}>
         <FaTrashAlt />
       </button>
     </li>

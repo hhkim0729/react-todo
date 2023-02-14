@@ -39,10 +39,18 @@ function App() {
     );
   };
 
+  const onItemDelete = (id) => {
+    setItems((items) => items.filter((item) => item.id !== id));
+  };
+
   return (
     <div className='App'>
       <Header />
-      <ItemList items={items} onChangeCheckbox={onChangeCheckbox} />
+      <ItemList
+        items={items}
+        onChangeCheckbox={onChangeCheckbox}
+        onItemDelete={onItemDelete}
+      />
       <Footer onItemAdd={onItemAdd} />
     </div>
   );
