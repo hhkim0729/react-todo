@@ -13,7 +13,12 @@ export default function Footer({ onItemAdd }) {
   };
 
   const onKeyDownInput = (e) => {
-    if (e.key === 'Enter') addItem();
+    if (e.nativeEvent.isComposing) {
+      return;
+    }
+    if (e.key === 'Enter') {
+      addItem();
+    }
   };
 
   return (
