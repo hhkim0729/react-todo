@@ -23,7 +23,7 @@ export default function Item({ item, filter, onChangeCheckbox, onItemDelete }) {
           onChange={() => onChangeCheckbox(item.id)}
           checked={item.isDone}
         />
-        <span className={item.isDone ? styles.done : ''}>{item.title}</span>
+        <span className={item.isDone ? styles.done : ''}>{item.text}</span>
       </div>
       <button
         className={styles['delete-btn']}

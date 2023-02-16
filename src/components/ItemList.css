@@ -1,6 +1,7 @@
 .ItemList {
   width: 100%;
-  height: 20rem;
+  min-height: 10rem;
+  max-height: 20rem;
   padding: 0.5rem;
   margin: 0;
   overflow-y: auto;

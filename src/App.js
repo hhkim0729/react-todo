@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -7,7 +7,6 @@ import { DarkModeProvider } from './context/DarkModeContext';
 import { Filter } from './types';
 
 function App() {
-  const id = useRef(0);
   const [items, setItems] = useState(() => {
     const todos = JSON.parse(localStorage.getItem('todos'));
     return todos ? todos : [];
@@ -15,17 +14,11 @@ function App() {
   const [filter, setFilter] = useState(Filter.all);
 
   useEffect(() => {
-    const todoId = localStorage.getItem('todoId');
-    id.current = todoId ? parseInt(todoId) : 0;
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(items));
-    localStorage.setItem('todoId', id.current);
   }, [items]);
 
-  const onItemAdd = (title) => {
-    setItems((items) => [...items, { id: id.current++, title, isDone: false }]);
+  const onAddItem = (item) => {
+    setItems((items) => [...items, item]);
   };
 
   const onChangeCheckbox = (id) => {
@@ -57,7 +50,7 @@ function App() {
           onChangeCheckbox={onChangeCheckbox}
           onItemDelete={onItemDelete}
         />
-        <Footer onItemAdd={onItemAdd} />
+        <Footer onAddItem={onAddItem} />
       </DarkModeProvider>
     </div>
   );

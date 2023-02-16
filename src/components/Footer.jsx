@@ -1,45 +1,40 @@
 import React, { useContext, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { DarkModeContext } from '../context/DarkModeContext';
 import styles from './Footer.module.css';
 
-export default function Footer({ onItemAdd }) {
-  const [title, setTitle] = useState('');
+export default function Footer({ onAddItem }) {
+  const [text, setText] = useState('');
   const { darkMode } = useContext(DarkModeContext);
 
-  const onChangeInput = ({ target }) => {
-    setTitle(target.value);
+  const handleChangeInput = ({ target }) => {
+    setText(target.value);
   };
 
-  const addItem = () => {
-    if (!title.trim()) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!text.trim()) {
       return;
     }
-    onItemAdd(title.trim());
-    setTitle('');
-  };
-
-  const onKeyDownInput = (e) => {
-    if (e.nativeEvent.isComposing) {
-      return;
-    }
-    if (e.key === 'Enter') {
-      addItem();
-    }
+    onAddItem({ id: uuidv4(), text, isDone: false });
+    setText('');
   };
 
   return (
-    <footer className={`${styles.Footer} ${darkMode ? styles.dark : ''}`}>
+    <form
+      className={`${styles.Footer} ${darkMode ? styles.dark : ''}`}
+      onSubmit={handleSubmit}
+    >
       <input
         type='text'
         name='todo'
-        onChange={onChangeInput}
-        onKeyDown={onKeyDownInput}
-        value={title}
+        onChange={handleChangeInput}
+        value={text}
         placeholder='Add Todo'
       />
-      <button className={styles['add-btn']} onClick={addItem}>
+      <button type='submit' className={styles['add-btn']}>
         Add
       </button>
-    </footer>
+    </form>
   );
 }
