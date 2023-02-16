@@ -11,7 +11,10 @@ export default function Footer({ onItemAdd }) {
   };
 
   const addItem = () => {
-    onItemAdd(title);
+    if (!title.trim()) {
+      return;
+    }
+    onItemAdd(title.trim());
     setTitle('');
   };
 
