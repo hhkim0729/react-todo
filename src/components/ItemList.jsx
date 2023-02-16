@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from './Item';
+import './ItemList.css';
 
 export default function ItemList({
   items,
@@ -8,7 +9,7 @@ export default function ItemList({
   onItemDelete,
 }) {
   return (
-    <ul>
+    <ul className='ItemList'>
       {items &&
         items.map((item) => (
           <Item

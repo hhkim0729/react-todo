@@ -1,0 +1,22 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px 10px 0 0;
+}
+
+.button {
+  font-size: 1rem;
+}
+
+.filters .button {
+  color: orange;
+}
+
+.filters .button.active {
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: white;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
+import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { Filter } from '../types';
+import styles from './Header.module.css';
 
 export default function Header({ onClickFilter }) {
   const handleClick = ({ target }) => {
@@ -9,10 +11,17 @@ export default function Header({ onClickFilter }) {
   };
 
   return (
-    <header onClick={handleClick}>
-      <button>{Filter.all}</button>
-      <button>{Filter.active}</button>
-      <button>{Filter.completed}</button>
+    <header className={styles.Header} onClick={handleClick}>
+      <button className={styles.button}>
+        <MdLightMode />
+      </button>
+      <div className={styles.filters}>
+        <button className={`${styles.button} ${styles.active}`}>
+          {Filter.all}
+        </button>
+        <button className={styles.button}>{Filter.active}</button>
+        <button className={styles.button}>{Filter.completed}</button>
+      </div>
     </header>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './Footer.module.css';
 
 export default function Footer({ onItemAdd }) {
   const [title, setTitle] = useState('');
@@ -22,7 +23,7 @@ export default function Footer({ onItemAdd }) {
   };
 
   return (
-    <footer>
+    <footer className={styles.Footer}>
       <input
         type='text'
         name='todo'
@@ -31,7 +32,9 @@ export default function Footer({ onItemAdd }) {
         value={title}
         placeholder='Add Todo'
       />
-      <button onClick={addItem}>Add</button>
+      <button className={styles['add-btn']} onClick={addItem}>
+        Add
+      </button>
     </footer>
   );
 }
