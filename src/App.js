@@ -48,7 +48,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Header onClickFilter={onClickFilter} />
+      <Header filter={filter} onClickFilter={onClickFilter} />
       <ItemList
         items={items}
         filter={filter}

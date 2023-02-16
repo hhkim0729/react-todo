@@ -12,10 +12,10 @@
 
 .filters .button {
   color: orange;
+  margin: 0 0.25rem;
 }
 
 .filters .button.active {
-  font-weight: bold;
   text-decoration: underline;
   text-underline-offset: 5px;
   text-decoration-color: white;
