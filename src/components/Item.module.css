@@ -10,10 +10,7 @@
 .Item input[type='checkbox'] {
   margin-right: 0.5rem;
   cursor: pointer;
-}
-
-.Item input[type='checkbox']:checked {
-  accent-color: orange;
+  accent-color: darkorange;
 }
 
 .done {
@@ -25,6 +22,11 @@
   width: 1.25rem;
   border-radius: 50%;
   animation: all 0.3s ease-in;
+  color: #777;
+}
+
+.Item.dark .delete-btn {
+  color: white;
 }
 
 .delete-btn:hover {

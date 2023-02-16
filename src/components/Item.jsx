@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
+import { DarkModeContext } from '../context/DarkModeContext';
 import { Filter } from '../types';
 import styles from './Item.module.css';
 
 export default function Item({ item, filter, onChangeCheckbox, onItemDelete }) {
+  const { darkMode } = useContext(DarkModeContext);
+
   return (
     <li
-      className={styles.Item}
+      className={`${styles.Item} ${darkMode ? styles.dark : ''}`}
       style={
         (filter === Filter.active && item.isDone) ||
         (filter === Filter.completed && !item.isDone)

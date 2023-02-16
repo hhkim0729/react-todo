@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DarkModeContext } from '../context/DarkModeContext';
 import Item from './Item';
 import './ItemList.css';
 
@@ -8,8 +9,10 @@ export default function ItemList({
   onChangeCheckbox,
   onItemDelete,
 }) {
+  const { darkMode } = useContext(DarkModeContext);
+
   return (
-    <ul className='ItemList'>
+    <ul className={`ItemList ${darkMode ? 'dark' : ''}`}>
       {items &&
         items.map((item) => (
           <Item

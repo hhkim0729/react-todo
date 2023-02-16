@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { DarkModeContext } from '../context/DarkModeContext';
 import styles from './Footer.module.css';
 
 export default function Footer({ onItemAdd }) {
   const [title, setTitle] = useState('');
+  const { darkMode } = useContext(DarkModeContext);
 
   const onChangeInput = ({ target }) => {
     setTitle(target.value);
@@ -23,7 +25,7 @@ export default function Footer({ onItemAdd }) {
   };
 
   return (
-    <footer className={styles.Footer}>
+    <footer className={`${styles.Footer} ${darkMode ? styles.dark : ''}`}>
       <input
         type='text'
         name='todo'

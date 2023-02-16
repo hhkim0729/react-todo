@@ -5,4 +5,11 @@
   margin: 0;
   overflow-y: auto;
   word-break: break-all;
+  background-color: white;
+  color: #333;
+}
+
+.ItemList.dark {
+  background-color: rgb(54, 54, 74);
+  color: white;
 }

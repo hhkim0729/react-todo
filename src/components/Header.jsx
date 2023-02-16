@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
+import { DarkModeContext } from '../context/DarkModeContext';
 import { Filter } from '../types';
 import styles from './Header.module.css';
 
 export default function Header({ filter, onClickFilter }) {
-  const handleClick = ({ target }) => {
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+
+  const handleClickFilter = ({ target }) => {
     if (target.nodeName === 'BUTTON') {
       onClickFilter(target.innerText);
     }
   };
 
   return (
-    <header className={styles.Header} onClick={handleClick}>
-      <button className={styles.button}>
-        <MdLightMode />
+    <header className={`${styles.Header} ${darkMode ? styles.dark : ''}`}>
+      <button
+        className={`${styles.button} ${styles.mode}`}
+        onClick={toggleDarkMode}
+      >
+        {darkMode ? <MdLightMode /> : <MdDarkMode />}
       </button>
-      <div className={styles.filters}>
+      <div className={styles.filters} onClick={handleClickFilter}>
         <button
           className={`${styles.button} ${
             filter === Filter.all ? styles.active : ''

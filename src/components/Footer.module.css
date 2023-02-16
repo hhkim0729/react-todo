@@ -1,8 +1,12 @@
 .Footer {
   padding: 1rem 0.5rem;
-  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0 0 10px 10px;
+  background-color: #eee;
   text-align: center;
+}
+
+.Footer.dark {
+  background-color: rgb(34, 34, 47);
 }
 
 .Footer input[type='text'] {
@@ -17,7 +21,7 @@
 .add-btn {
   width: 20%;
   height: 2.25rem;
-  background-color: orange;
+  background-color: darkorange;
   font-size: 1.2rem;
   border-radius: 0 8px 8px 0;
 }

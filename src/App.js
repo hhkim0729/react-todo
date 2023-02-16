@@ -3,6 +3,7 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ItemList from './components/ItemList';
+import { DarkModeProvider } from './context/DarkModeContext';
 import { Filter } from './types';
 
 function App() {
@@ -48,14 +49,16 @@ function App() {
 
   return (
     <div className='App'>
-      <Header filter={filter} onClickFilter={onClickFilter} />
-      <ItemList
-        items={items}
-        filter={filter}
-        onChangeCheckbox={onChangeCheckbox}
-        onItemDelete={onItemDelete}
-      />
-      <Footer onItemAdd={onItemAdd} />
+      <DarkModeProvider>
+        <Header filter={filter} onClickFilter={onClickFilter} />
+        <ItemList
+          items={items}
+          filter={filter}
+          onChangeCheckbox={onChangeCheckbox}
+          onItemDelete={onItemDelete}
+        />
+        <Footer onItemAdd={onItemAdd} />
+      </DarkModeProvider>
     </div>
   );
 }

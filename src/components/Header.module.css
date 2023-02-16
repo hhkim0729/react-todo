@@ -2,21 +2,41 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 0.5rem;
-  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px 10px 0 0;
+  background-color: #eee;
+}
+
+.Header.dark {
+  background-color: rgb(34, 34, 47);
 }
 
 .button {
   font-size: 1rem;
 }
 
+.mode {
+  color: #333;
+}
+
+.Header.dark .mode {
+  color: white;
+}
+
+.mode:hover {
+  color: darkorange;
+}
+
 .filters .button {
-  color: orange;
+  color: darkorange;
   margin: 0 0.25rem;
 }
 
 .filters .button.active {
   text-decoration: underline;
   text-underline-offset: 5px;
+  text-decoration-color: #777;
+}
+
+.Header.dark .filters .button.active {
   text-decoration-color: white;
 }
