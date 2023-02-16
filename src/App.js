@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -6,25 +6,22 @@ import ItemList from './components/ItemList';
 import { Filter } from './types';
 
 function App() {
-  const id = useRef(3);
-  const [items, setItems] = useState([
-    {
-      id: 0,
-      title: '공부하기',
-      isDone: false,
-    },
-    {
-      id: 1,
-      title: '밥먹기',
-      isDone: true,
-    },
-    {
-      id: 2,
-      title: '강의 보기',
-      isDone: false,
-    },
-  ]);
+  const id = useRef(0);
+  const [items, setItems] = useState(() => {
+    const todos = JSON.parse(localStorage.getItem('todos'));
+    return todos ? todos : [];
+  });
   const [filter, setFilter] = useState(Filter.all);
+
+  useEffect(() => {
+    const todoId = localStorage.getItem('todoId');
+    id.current = todoId ? parseInt(todoId) : 0;
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(items));
+    localStorage.setItem('todoId', id.current);
+  }, [items]);
 
   const onItemAdd = (title) => {
     setItems((items) => [...items, { id: id.current++, title, isDone: false }]);

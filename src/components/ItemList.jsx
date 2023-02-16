@@ -9,15 +9,16 @@ export default function ItemList({
 }) {
   return (
     <ul>
-      {items.map((item) => (
-        <Item
-          item={item}
-          key={item.id}
-          filter={filter}
-          onChangeCheckbox={onChangeCheckbox}
-          onItemDelete={onItemDelete}
-        />
-      ))}
+      {items &&
+        items.map((item) => (
+          <Item
+            item={item}
+            key={item.id}
+            filter={filter}
+            onChangeCheckbox={onChangeCheckbox}
+            onItemDelete={onItemDelete}
+          />
+        ))}
     </ul>
   );
 }
