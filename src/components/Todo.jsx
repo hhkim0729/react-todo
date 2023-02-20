@@ -8,21 +8,27 @@ export default function Todo({ todo, onUpdate, onDelete }) {
   const { darkMode } = useContext(DarkModeContext);
 
   return (
-    <li className={`${styles.Todo} ${darkMode ? styles.dark : ''}`}>
+    <li className={`${styles.todo} ${darkMode ? styles.dark : ''}`}>
       <div>
         <input
+          className={styles.checkbox}
           type='checkbox'
           id={id}
           onChange={() => onUpdate({ ...todo, isDone: !isDone })}
           checked={isDone}
         />
-        <label htmlFor={id} className={isDone ? styles.done : ''}>
+        <label
+          className={`${styles.text} ${isDone ? styles.done : ''}`}
+          htmlFor={id}
+        >
           {text}
         </label>
       </div>
-      <button className={styles['delete-btn']} onClick={() => onDelete(id)}>
-        <FaTrashAlt />
-      </button>
+      <span className={styles.icon}>
+        <button className={styles.button} onClick={() => onDelete(id)}>
+          <FaTrashAlt />
+        </button>
+      </span>
     </li>
   );
 }

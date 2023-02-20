@@ -1,12 +1,13 @@
-.Header {
+.header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem 0.5rem;
-  border-radius: 10px 10px 0 0;
-  background-color: #eee;
+  background-color: var(--color-bg-dark);
+  border-bottom: 1px solid var(--color-grey);
 }
 
-.Header.dark {
+.header.dark {
   background-color: rgb(34, 34, 47);
 }
 
@@ -18,7 +19,7 @@
   color: #333;
 }
 
-.Header.dark .mode {
+.header.dark .mode {
   color: white;
 }
 
@@ -26,21 +27,27 @@
   color: darkorange;
 }
 
-.filters li {
-  display: inline-block;
+.filters {
+  display: flex;
 }
 
-.filters .button {
-  color: darkorange;
-  margin: 0 0.25rem;
+.filter {
+  font-size: 1.2rem;
+  margin: 0.3rem;
+  text-transform: capitalize;
+  color: var(--color-accent);
+  opacity: 0.8;
+  font-weight: bold;
 }
 
-.filters .button.active {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-color: #777;
+.filter:hover,
+.filter.selected {
+  opacity: 1;
 }
 
-.Header.dark .filters .button.active {
-  text-decoration-color: white;
+.filter.selected::after {
+  content: '';
+  display: block;
+  margin-top: 0.2rem;
+  border: 1px solid var(--color-accent);
 }

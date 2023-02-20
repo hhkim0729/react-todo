@@ -7,7 +7,7 @@ export default function Header({ filters, filter, onFilterChange }) {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   return (
-    <header className={`${styles.Header} ${darkMode ? styles.dark : ''}`}>
+    <header className={`${styles.header} ${darkMode ? styles.dark : ''}`}>
       <button
         className={`${styles.button} ${styles.mode}`}
         onClick={toggleDarkMode}
@@ -18,7 +18,9 @@ export default function Header({ filters, filter, onFilterChange }) {
         {filters.map((value, index) => (
           <li key={index}>
             <button
-              className={styles.button}
+              className={`${styles.filter} ${
+                filter === value ? styles.selected : ''
+              }`}
               onClick={() => onFilterChange(value)}
             >
               {value}

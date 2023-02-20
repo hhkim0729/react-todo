@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { DarkModeContext } from '../context/DarkModeContext';
-import Footer from './Footer';
+import AddTodo from './AddTodo';
 import Todo from './Todo';
-import './TodoList.css';
+import styles from './TodoList.module.css';
 
 export default function TodoList({ filter }) {
   const [todos, setTodos] = useState(() => {
@@ -32,8 +32,8 @@ export default function TodoList({ filter }) {
   const filtered = getFilteredTodos(todos, filter);
 
   return (
-    <section>
-      <ul className={`TodoList ${darkMode ? 'dark' : ''}`}>
+    <section className={styles.container}>
+      <ul className={styles.list}>
         {filtered &&
           filtered.map((todo) => (
             <Todo
@@ -44,19 +44,19 @@ export default function TodoList({ filter }) {
             />
           ))}
       </ul>
-      <Footer onAdd={handleAdd} />
+      <AddTodo onAdd={handleAdd} />
     </section>
   );
 }
 
 function getFilteredTodos(todos, filter) {
-  if (filter === 'All') {
+  if (filter === 'all') {
     return todos;
   }
-  if (filter === 'Active') {
+  if (filter === 'active') {
     return todos.filter((todo) => !todo.isDone);
   }
-  if (filter === 'Completed') {
+  if (filter === 'completed') {
     return todos.filter((todo) => todo.isDone);
   }
 }
