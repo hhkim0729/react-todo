@@ -4,10 +4,7 @@ import Todo from './Todo';
 import styles from './TodoList.module.css';
 
 export default function TodoList({ filter }) {
-  const [todos, setTodos] = useState(() => {
-    const todos = JSON.parse(localStorage.getItem('todos'));
-    return todos ? todos : [];
-  });
+  const [todos, setTodos] = useState(readTodosFromLocalStorage);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -45,6 +42,11 @@ export default function TodoList({ filter }) {
       <AddTodo onAdd={handleAdd} />
     </section>
   );
+}
+
+function readTodosFromLocalStorage() {
+  const todos = localStorage.getItem('todos');
+  return todos ? JSON.parse(todos) : [];
 }
 
 function getFilteredTodos(todos, filter) {
