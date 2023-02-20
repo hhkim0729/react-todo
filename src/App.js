@@ -3,19 +3,16 @@ import './App.css';
 import Header from './components/Header';
 import TodoList from './components/TodoList';
 import { DarkModeProvider } from './context/DarkModeContext';
-import { Filter } from './types';
+
+const filters = ['All', 'Active', 'Completed'];
 
 function App() {
-  const [filter, setFilter] = useState(Filter.all);
-
-  const handleClickFilter = (filter) => {
-    setFilter(filter);
-  };
+  const [filter, setFilter] = useState(filters[0]);
 
   return (
     <div className='App'>
       <DarkModeProvider>
-        <Header filter={filter} onClickFilter={handleClickFilter} />
+        <Header filters={filters} filter={filter} onFilterChange={setFilter} />
         <TodoList filter={filter} />
       </DarkModeProvider>
     </div>

@@ -5,39 +5,40 @@ import Todo from './Todo';
 import './TodoList.css';
 
 export default function TodoList({ filter }) {
-  const [items, setItems] = useState(() => {
+  const [todos, setTodos] = useState(() => {
     const todos = JSON.parse(localStorage.getItem('todos'));
     return todos ? todos : [];
   });
   const { darkMode } = useContext(DarkModeContext);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(items));
-  }, [items]);
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
-  const handleAdd = (item) => {
-    setItems((items) => [...items, item]);
+  const handleAdd = (todo) => {
+    setTodos((todos) => [...todos, todo]);
   };
 
   const handleUpdate = (updated) => {
-    setItems((items) =>
-      items.map((item) => (item.id === updated.id ? updated : item))
+    setTodos((todos) =>
+      todos.map((todo) => (todo.id === updated.id ? updated : todo))
     );
   };
 
   const handleDelete = (id) => {
-    setItems((items) => items.filter((item) => item.id !== id));
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
   };
+
+  const filtered = getFilteredTodos(todos, filter);
 
   return (
     <section>
       <ul className={`TodoList ${darkMode ? 'dark' : ''}`}>
-        {items &&
-          items.map((item) => (
+        {filtered &&
+          filtered.map((todo) => (
             <Todo
-              item={item}
-              key={item.id}
-              filter={filter}
+              todo={todo}
+              key={todo.id}
               onUpdate={handleUpdate}
               onDelete={handleDelete}
             />
@@ -46,4 +47,16 @@ export default function TodoList({ filter }) {
       <Footer onAdd={handleAdd} />
     </section>
   );
+}
+
+function getFilteredTodos(todos, filter) {
+  if (filter === 'All') {
+    return todos;
+  }
+  if (filter === 'Active') {
+    return todos.filter((todo) => !todo.isDone);
+  }
+  if (filter === 'Completed') {
+    return todos.filter((todo) => todo.isDone);
+  }
 }
