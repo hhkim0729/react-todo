@@ -17,40 +17,35 @@ function App() {
     localStorage.setItem('todos', JSON.stringify(items));
   }, [items]);
 
-  const onAddItem = (item) => {
+  const handleAddItem = (item) => {
     setItems((items) => [...items, item]);
   };
 
-  const onChangeCheckbox = (id) => {
+  const handleUpdateItem = (updated) => {
     setItems((items) =>
-      items.map((item) => {
-        if (item.id === id) {
-          return { ...item, isDone: !item.isDone };
-        }
-        return item;
-      })
+      items.map((item) => (item.id === updated.id ? updated : item))
     );
   };
 
-  const onItemDelete = (id) => {
+  const handleDeleteItem = (id) => {
     setItems((items) => items.filter((item) => item.id !== id));
   };
 
-  const onClickFilter = (filter) => {
+  const handleClickFilter = (filter) => {
     setFilter(filter);
   };
 
   return (
     <div className='App'>
       <DarkModeProvider>
-        <Header filter={filter} onClickFilter={onClickFilter} />
+        <Header filter={filter} onClickFilter={handleClickFilter} />
         <ItemList
           items={items}
           filter={filter}
-          onChangeCheckbox={onChangeCheckbox}
-          onItemDelete={onItemDelete}
+          onUpdate={handleUpdateItem}
+          onDelete={handleDeleteItem}
         />
-        <Footer onAddItem={onAddItem} />
+        <Footer onAdd={handleAddItem} />
       </DarkModeProvider>
     </div>
   );

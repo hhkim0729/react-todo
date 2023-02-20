@@ -3,12 +3,7 @@ import { DarkModeContext } from '../context/DarkModeContext';
 import Item from './Item';
 import './ItemList.css';
 
-export default function ItemList({
-  items,
-  filter,
-  onChangeCheckbox,
-  onItemDelete,
-}) {
+export default function ItemList({ items, filter, onUpdate, onDelete }) {
   const { darkMode } = useContext(DarkModeContext);
 
   return (
@@ -19,8 +14,8 @@ export default function ItemList({
             item={item}
             key={item.id}
             filter={filter}
-            onChangeCheckbox={onChangeCheckbox}
-            onItemDelete={onItemDelete}
+            onUpdate={onUpdate}
+            onDelete={onDelete}
           />
         ))}
     </ul>

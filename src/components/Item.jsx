@@ -4,15 +4,16 @@ import { DarkModeContext } from '../context/DarkModeContext';
 import { Filter } from '../types';
 import styles from './Item.module.css';
 
-export default function Item({ item, filter, onChangeCheckbox, onItemDelete }) {
+export default function Item({ item, filter, onUpdate, onDelete }) {
+  const { id, text, isDone } = item;
   const { darkMode } = useContext(DarkModeContext);
 
   return (
     <li
       className={`${styles.Item} ${darkMode ? styles.dark : ''}`}
       style={
-        (filter === Filter.active && item.isDone) ||
-        (filter === Filter.completed && !item.isDone)
+        (filter === Filter.active && isDone) ||
+        (filter === Filter.completed && !isDone)
           ? { display: 'none' }
           : { display: 'flex' }
       }
@@ -20,15 +21,15 @@ export default function Item({ item, filter, onChangeCheckbox, onItemDelete }) {
       <div>
         <input
           type='checkbox'
-          onChange={() => onChangeCheckbox(item.id)}
-          checked={item.isDone}
+          id={id}
+          onChange={() => onUpdate({ ...item, isDone: !isDone })}
+          checked={isDone}
         />
-        <span className={item.isDone ? styles.done : ''}>{item.text}</span>
+        <label htmlFor={id} className={isDone ? styles.done : ''}>
+          {text}
+        </label>
       </div>
-      <button
-        className={styles['delete-btn']}
-        onClick={() => onItemDelete(item.id)}
-      >
+      <button className={styles['delete-btn']} onClick={() => onDelete(id)}>
         <FaTrashAlt />
       </button>
     </li>
