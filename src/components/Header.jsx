@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
-import { DarkModeContext } from '../context/DarkModeContext';
+import { useDarkMode } from '../context/DarkModeContext';
 import styles from './Header.module.css';
 
 export default function Header({ filters, filter, onFilterChange }) {
-  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+  const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <header className={`${styles.header} ${darkMode ? styles.dark : ''}`}>
+    <header className={styles.header}>
       <button
         className={`${styles.button} ${styles.mode}`}
         onClick={toggleDarkMode}

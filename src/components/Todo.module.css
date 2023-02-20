@@ -45,7 +45,3 @@
   animation: all 0.3s ease-in;
   color: var(--color-text);
 }
-
-.todo.dark .button {
-  color: white;
-}

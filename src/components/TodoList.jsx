@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { DarkModeContext } from '../context/DarkModeContext';
+import React, { useEffect, useState } from 'react';
 import AddTodo from './AddTodo';
 import Todo from './Todo';
 import styles from './TodoList.module.css';
@@ -9,7 +8,6 @@ export default function TodoList({ filter }) {
     const todos = JSON.parse(localStorage.getItem('todos'));
     return todos ? todos : [];
   });
-  const { darkMode } = useContext(DarkModeContext);
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
