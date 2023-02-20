@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import { DarkModeContext } from '../context/DarkModeContext';
 import { Filter } from '../types';
-import styles from './Item.module.css';
+import styles from './Todo.module.css';
 
-export default function Item({ item, filter, onUpdate, onDelete }) {
+export default function Todo({ item, filter, onUpdate, onDelete }) {
   const { id, text, isDone } = item;
   const { darkMode } = useContext(DarkModeContext);
 
   return (
     <li
-      className={`${styles.Item} ${darkMode ? styles.dark : ''}`}
+      className={`${styles.Todo} ${darkMode ? styles.dark : ''}`}
       style={
         (filter === Filter.active && isDone) ||
         (filter === Filter.completed && !isDone)

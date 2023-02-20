@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { DarkModeContext } from '../context/DarkModeContext';
 import styles from './Footer.module.css';
 
-export default function Footer({ onAddItem }) {
+export default function Footer({ onAdd }) {
   const [text, setText] = useState('');
   const { darkMode } = useContext(DarkModeContext);
 
@@ -16,7 +16,7 @@ export default function Footer({ onAddItem }) {
     if (!text.trim()) {
       return;
     }
-    onAddItem({ id: uuidv4(), text, isDone: false });
+    onAdd({ id: uuidv4(), text, isDone: false });
     setText('');
   };
 
